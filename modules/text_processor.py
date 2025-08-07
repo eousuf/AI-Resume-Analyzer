@@ -4,7 +4,20 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
-# The rest of the file remains the same
+# --- START: Final NLTK Data Download Logic ---
+# This block will run when the app starts on the server,
+# ensuring the necessary data is downloaded.
+try:
+    stopwords.words('english')
+except LookupError:
+    nltk.download('stopwords')
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+# --- END: Final NLTK Data Download Logic ---
+
+# The rest of your code remains unchanged
 nlp = spacy.load('en_core_web_sm')
 stop_words = set(stopwords.words('english'))
 

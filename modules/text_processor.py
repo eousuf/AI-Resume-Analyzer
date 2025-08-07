@@ -3,15 +3,19 @@ import spacy
 import nltk
 import os
 
-# Point NLTK to the local data folder inside the project
-nltk_data_path = os.path.join(os.getcwd(), "nltk_data")
-if os.path.exists(nltk_data_path):
-    nltk.data.path.append(nltk_data_path)
+# --- START: New, more reliable path logic ---
+# Get the absolute path of the current script's directory (modules/)
+_dir = os.path.dirname(os.path.abspath(__file__))
+# Construct the absolute path to the nltk_data folder in the project root
+_nltk_data_path = os.path.join(_dir, '..', 'nltk_data')
+# Add this specific path for NLTK to search
+nltk.data.path.append(_nltk_data_path)
+# --- END: New logic ---
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
-# Load models and stopwords once
+# The rest of the file remains the same
 nlp = spacy.load('en_core_web_sm')
 stop_words = set(stopwords.words('english'))
 
@@ -26,17 +30,13 @@ def preprocess_text(text):
 def extract_skills(text, skills_list):
     """Extracts skills from text based on a predefined list."""
     found_skills = set()
-    # Check for multi-word skills first
     for skill in skills_list:
         if " " in skill and re.search(r'\b' + re.escape(skill) + r'\b', text.lower()):
             found_skills.add(skill)
-
-    # Check for single-word skills
     doc = nlp(text.lower())
     for token in doc:
         if token.text in skills_list:
             found_skills.add(token.text)
-            
     return list(found_skills)
 
 def load_skills(skills_file_path):

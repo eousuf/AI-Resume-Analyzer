@@ -1,5 +1,13 @@
 import re
 import spacy
+import nltk
+import os
+
+# Point NLTK to the local data folder inside the project
+nltk_data_path = os.path.join(os.getcwd(), "nltk_data")
+if os.path.exists(nltk_data_path):
+    nltk.data.path.append(nltk_data_path)
+
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 

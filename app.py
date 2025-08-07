@@ -1,23 +1,5 @@
 import streamlit as st
 
-import nltk
-
-# Function to download NLTK data if not already present
-def download_nltk_data():
-    try:
-        nltk.data.find('corpora/stopwords')
-    except LookupError:
-        print("Downloading 'stopwords' from NLTK...")
-        nltk.download('stopwords')
-    try:
-        nltk.data.find('tokenizers/punkt')
-    except LookupError:
-        print("Downloading 'punkt' from NLTK...")
-        nltk.download('punkt')
-
-# Run the download function at the start of the app
-download_nltk_data()
-
 import pandas as pd
 
 # Import functions from your modules

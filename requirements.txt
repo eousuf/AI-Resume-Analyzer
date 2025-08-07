@@ -1,10 +1,10 @@
 scikit-learn
 pandas
 numpy
-spacy
+spacy>=3.7.0,<3.8.0
 nltk
 sentence-transformers
 PyPDF2
 python-docx
 streamlit
-en-core-web-sm
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl

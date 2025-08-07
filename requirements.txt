@@ -1,6 +1,6 @@
 scikit-learn
 pandas
-numpy
+numpy==1.26.4
 spacy>=3.7.0,<3.8.0
 nltk
 sentence-transformers

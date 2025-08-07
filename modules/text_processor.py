@@ -1,25 +1,10 @@
 import re
 import spacy
 import nltk
-import os
-
-# --- START: New Hybrid Logic ---
-# Define the path for the bundled NLTK data
-_nltk_data_path = os.path.join(os.getcwd(), "nltk_data")
-
-# Check if the bundled data exists. If so, add its path to NLTK.
-if os.path.exists(_nltk_data_path):
-    nltk.data.path.append(_nltk_data_path)
-# If it doesn't exist (failsafe for cloud environment), download it.
-else:
-    nltk.download('punkt')
-    nltk.download('stopwords')
-# --- END: New Hybrid Logic ---
-
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
-# The rest of your code remains unchanged
+# The rest of the file remains the same
 nlp = spacy.load('en_core_web_sm')
 stop_words = set(stopwords.words('english'))
 

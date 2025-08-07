@@ -1,0 +1,24 @@
+python
+java
+c++
+javascript
+sql
+git
+docker
+react
+agile
+scrum
+machine learning
+data analysis
+project management
+communication
+teamwork
+leadership
+problem solving
+tensorflow
+pytorch
+scikit-learn
+django
+flask
+html
+css

@@ -3,19 +3,23 @@ import spacy
 import nltk
 import os
 
-# --- START: New, more reliable path logic ---
-# Get the absolute path of the current script's directory (modules/)
-_dir = os.path.dirname(os.path.abspath(__file__))
-# Construct the absolute path to the nltk_data folder in the project root
-_nltk_data_path = os.path.join(_dir, '..', 'nltk_data')
-# Add this specific path for NLTK to search
-nltk.data.path.append(_nltk_data_path)
-# --- END: New logic ---
+# --- START: New Hybrid Logic ---
+# Define the path for the bundled NLTK data
+_nltk_data_path = os.path.join(os.getcwd(), "nltk_data")
+
+# Check if the bundled data exists. If so, add its path to NLTK.
+if os.path.exists(_nltk_data_path):
+    nltk.data.path.append(_nltk_data_path)
+# If it doesn't exist (failsafe for cloud environment), download it.
+else:
+    nltk.download('punkt')
+    nltk.download('stopwords')
+# --- END: New Hybrid Logic ---
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
-# The rest of the file remains the same
+# The rest of your code remains unchanged
 nlp = spacy.load('en_core_web_sm')
 stop_words = set(stopwords.words('english'))
 

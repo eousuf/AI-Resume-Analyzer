@@ -6,7 +6,7 @@ from nltk.corpus import stopwords
 
 # --- START: Final NLTK Data Download Logic ---
 # This block will run when the app starts on the server,
-# ensuring the necessary data is downloaded.
+# ensuring all necessary data is downloaded.
 try:
     stopwords.words('english')
 except LookupError:
@@ -15,6 +15,11 @@ try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
     nltk.download('punkt')
+# --- ADDED THIS BLOCK FOR THE FINAL FIX ---
+try:
+    nltk.data.find('tokenizers/punkt_tab')
+except LookupError:
+    nltk.download('punkt_tab')
 # --- END: Final NLTK Data Download Logic ---
 
 # The rest of your code remains unchanged
